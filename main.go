@@ -4,6 +4,7 @@ import (
 	"os"
 
 	"github.com/gedehariyogananda/pattern-golang/Config"
+	"github.com/gedehariyogananda/pattern-golang/Routes"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
@@ -46,6 +47,9 @@ func main() {
 	} else {
 		server = portServer
 	}
+
+	// init route
+	Routes.Init(setup, db)
 
 	if err := setup.Run(server); err != nil {
 		panic("Failed to run server!")
