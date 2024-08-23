@@ -5,7 +5,6 @@ import (
 	"os"
 
 	"github.com/gedehariyogananda/pattern-golang/Models"
-	"github.com/gedehariyogananda/pattern-golang/Seeder"
 	"github.com/joho/godotenv"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -34,10 +33,10 @@ func Connect() {
 	fmt.Println("Database connected!")
 
 	// auto migrate
-	AutoMigrate(db)
+	// AutoMigrate(db)
 
-	// database seeder
-	Seeder.DatabaseSeeder(db)
+	// // database seeder
+	// Seeder.DatabaseSeeder(db)
 
 }
 

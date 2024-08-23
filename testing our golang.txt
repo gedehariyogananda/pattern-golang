@@ -17,6 +17,7 @@ dotend -> github.com/joho/godotenv
 cors -> github.com/gin-contrib/cors
 env -> go get -u github.com/joho/godotenv
 hashPass -> go get golang.org/x/crypto/bcrypt
+instalasi wire -> go get github.com/google/wire
 
 catatan : 
 GORM dapat memanggil metode BeforeCreate secara otomatis karena menggunakan refleksi (reflection) di dalam bahasa Go. Refleksi memungkinkan GORM untuk memeriksa dan memanggil metode tertentu pada sebuah struct tanpa harus Anda panggil secara manual.
@@ -37,3 +38,11 @@ Ketika Anda memanggil db.Create(&user), GORM akan memulai dengan mencari apakah 
 GORM memanfaatkan refleksi untuk memeriksa keberadaan metode BeforeCreate.
 Jika metode tersebut ada, GORM akan memanggilnya sebelum melakukan operasi INSERT.
 Setelah BeforeCreate dieksekusi, GORM kemudian melanjutkan dengan menyimpan data ke database.
+
+
+----------//-----------
+jika suatu fungsi passing lebih dari 1 parameter, maka pakai 
+if _, err := 
+
+jika hanya satu lgsung passing (contohh register hanya butuh request)
+if err := 
