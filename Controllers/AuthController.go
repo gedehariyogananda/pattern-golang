@@ -11,6 +11,7 @@ import (
 type (
 	IAuthController interface {
 		Register(ctx *gin.Context)
+		Login(ctx *gin.Context)
 	}
 
 	AuthController struct {
@@ -45,5 +46,36 @@ func (c *AuthController) Register(ctx *gin.Context) {
 	ctx.JSON(http.StatusAccepted, gin.H{
 		"success": true,
 		"message": "mantap",
+	})
+}
+
+func (c *AuthController) Login(ctx *gin.Context) {
+	var loginRequest Dto.LoginRequest
+
+	if err := ctx.ShouldBind(&loginRequest); err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{
+			"success": false,
+			"message": err.Error(),
+		})
+		return
+	}
+
+	user, token, err := c.service.Login(&loginRequest)
+	if err != nil {
+		ctx.JSON(http.StatusBadGateway, gin.H{
+			"success": false,
+			"message": err.Error(),
+		})
+
+		return
+	}
+
+	ctx.JSON(http.StatusAccepted, gin.H{
+		"success": true,
+		"message": "successfully login",
+		"data": gin.H{
+			"user":  user,
+			"token": token,
+		},
 	})
 }

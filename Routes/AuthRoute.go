@@ -18,4 +18,5 @@ func AuthRoute(c *gin.RouterGroup, db *gorm.DB) {
 	})
 
 	route.POST("/register", authController.Register)
+	route.POST("/login", authController.Login)
 }

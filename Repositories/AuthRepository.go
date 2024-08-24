@@ -53,8 +53,8 @@ func (h *AuthRepository) CheckUniqueField(request *Dto.RegisterRequest) (err err
 func (h *AuthRepository) FindEmail(email string) (user *Models.User, err error) {
 	userInit := &Models.User{}
 
-	if err := h.DB.Where("email ?", email).First(&userInit).Error; err != nil {
-		return nil, err
+	if err := h.DB.Where("email = ?", email).First(&userInit).Error; err != nil {
+		return nil, errors.New("user not found")
 	}
 
 	return userInit, nil

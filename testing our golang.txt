@@ -18,6 +18,9 @@ cors -> github.com/gin-contrib/cors
 env -> go get -u github.com/joho/godotenv
 hashPass -> go get golang.org/x/crypto/bcrypt
 instalasi wire -> go get github.com/google/wire
+hot reload -> go install github.com/cosmtrek/air@v1.52.0
+lalu ketik command air init (mendapatkan air.toml)
+lalu run tinggal "air"
 
 catatan : 
 GORM dapat memanggil metode BeforeCreate secara otomatis karena menggunakan refleksi (reflection) di dalam bahasa Go. Refleksi memungkinkan GORM untuk memeriksa dan memanggil metode tertentu pada sebuah struct tanpa harus Anda panggil secara manual.
