@@ -16,15 +16,15 @@ const (
 )
 
 type User struct {
-	ID        string    `gorm:"type:char(36);primary_key"`
-	Name      string    `gorm:"type:string;not null"`
-	Username  string    `gorm:"type:string;not null;unique"`
-	Email     string    `gorm:"type:string;not null;unique"`
-	Password  string    `gorm:"type:string;not null"`
-	Phone     string    `gorm:"type:string;not null;unique"`
-	Roles     RolesEnum `gorm:"type:string;not null;default:'user'"`
-	CreatedAt time.Time `gorm:"type:timestamp;default:CURRENT_TIMESTAMP"`
-	UpdatedAt time.Time `gorm:"type:timestamp;default:CURRENT_TIMESTAMP"`
+	ID        string    `gorm:"type:char(36);primary_key" json:"id"`
+	Name      string    `gorm:"type:string;not null" json:"name"`
+	Username  string    `gorm:"type:string;not null;unique" json:"username"`
+	Email     string    `gorm:"type:string;not null;unique" json:"email"`
+	Password  string    `gorm:"type:string;not null" json:"password"`
+	Phone     string    `gorm:"type:string;not null;unique" json:"phone"`
+	Roles     RolesEnum `gorm:"type:string;not null;default:'user'" json:"roles"`
+	CreatedAt time.Time `gorm:"type:timestamp;default:CURRENT_TIMESTAMP" json:"created_at"`
+	UpdatedAt time.Time `gorm:"type:timestamp;default:CURRENT_TIMESTAMP" json:"updated_at"`
 }
 
 // before create hook set default UUID if not set

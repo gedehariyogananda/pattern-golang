@@ -10,5 +10,6 @@ func Init(c *gin.Engine, db *gorm.DB) {
 
 	// Initialize routes
 	AuthRoute(apiPrefix, db)
+	DivisionRoute(apiPrefix, db)
 
 }

@@ -8,6 +8,7 @@ package Di
 
 import (
 	"github.com/gedehariyogananda/pattern-golang/Controllers"
+	"github.com/gedehariyogananda/pattern-golang/Middleware"
 	"github.com/gedehariyogananda/pattern-golang/Repositories"
 	"github.com/gedehariyogananda/pattern-golang/Services"
 	"gorm.io/gorm"
@@ -17,7 +18,14 @@ import (
 
 func DIAuth(db *gorm.DB) *Controllers.AuthController {
 	authRepository := Repositories.AuthRepositoryProvider(db)
-	authService := Services.AuthServiceProvider(authRepository)
+	jwtService := Services.JwtServiceProvider()
+	authService := Services.AuthServiceProvider(authRepository, jwtService)
 	authController := Controllers.AuthControllerProvider(authService)
 	return authController
+}
+
+func DICommonMiddleware(db *gorm.DB) *Middleware.CommondMiddleware {
+	jwtService := Services.JwtServiceProvider()
+	commondMiddleware := Middleware.CommonMiddlewareProvider(jwtService)
+	return commondMiddleware
 }
