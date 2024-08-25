@@ -40,3 +40,33 @@ func DICommonMiddleware(db *gorm.DB) *Middleware.CommondMiddleware {
 
 	return &Middleware.CommondMiddleware{}
 }
+
+func DIDivision(db *gorm.DB) *Controllers.DivisionController {
+	panic(wire.Build(wire.NewSet(
+		Repositories.DivisionRepositoryProvider,
+		Services.DivisionServiceProvider,
+		Controllers.DivisionControllerPrivoder,
+
+		wire.Bind(new(Controllers.IDivisionController), new(*Controllers.DivisionController)),
+		wire.Bind(new(Services.IDivisionService), new(*Services.DivisionService)),
+		wire.Bind(new(Repositories.IDivisionRepository), new(*Repositories.DivisionRepository)),
+	),
+	))
+
+	return &Controllers.DivisionController{}
+}
+
+func DIEmployee(db *gorm.DB) *Controllers.EmployeeController {
+	panic(wire.Build(wire.NewSet(
+		Repositories.EmployeeRepositoryProvider,
+		Services.EmployeeServiceProvider,
+		Controllers.EmployeeControllerProvider,
+
+		wire.Bind(new(Controllers.IEmployeeController), new(*Controllers.EmployeeController)),
+		wire.Bind(new(Services.IEmployeeService), new(*Services.EmployeeService)),
+		wire.Bind(new(Repositories.IEmployeeRepository), new(*Repositories.EmployeeRepository)),
+	),
+	))
+
+	return &Controllers.EmployeeController{}
+}

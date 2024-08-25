@@ -15,9 +15,14 @@ func DivisionRoute(c *gin.RouterGroup, db *gorm.DB) {
 	// open use access authenticate
 	route.Use(m.IsAuthenticate)
 
+	// init controller
+	divisionController := Di.DIDivision(db)
+
 	route.GET("/checked", func(ctx *gin.Context) {
 		ctx.JSON(200, gin.H{
 			"message": "list division",
 		})
 	})
+
+	route.GET("/", divisionController.GetAllDivision)
 }
