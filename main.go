@@ -20,8 +20,14 @@ func main() {
 		panic("Failed to connect to database!")
 	}
 
-	// setup gin config
+	// setup gin config 
 	setup := gin.Default()
+
+	// max memory
+	setup.MaxMultipartMemory = 8 << 20
+
+	// akses folder uploads
+	setup.Static("/uploads", "./public/uploads")
 
 	// setup cors origin config
 	setup.Use(cors.New(cors.Config{

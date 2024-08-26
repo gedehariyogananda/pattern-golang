@@ -29,3 +29,17 @@ func DICommonMiddleware(db *gorm.DB) *Middleware.CommondMiddleware {
 	commondMiddleware := Middleware.CommonMiddlewareProvider(jwtService)
 	return commondMiddleware
 }
+
+func DIDivision(db *gorm.DB) *Controllers.DivisionController {
+	divisionRepository := Repositories.DivisionRepositoryProvider(db)
+	divisionService := Services.DivisionServiceProvider(divisionRepository)
+	divisionController := Controllers.DivisionControllerPrivoder(divisionService)
+	return divisionController
+}
+
+func DIEmployee(db *gorm.DB) *Controllers.EmployeeController {
+	employeeRepository := Repositories.EmployeeRepositoryProvider(db)
+	employeeService := Services.EmployeeServiceProvider(employeeRepository)
+	employeeController := Controllers.EmployeeControllerProvider(employeeService)
+	return employeeController
+}
