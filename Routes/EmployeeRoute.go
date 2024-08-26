@@ -6,8 +6,8 @@ import (
 	"gorm.io/gorm"
 )
 
-func DivisionRoute(c *gin.RouterGroup, db *gorm.DB) {
-	route := c.Group("/division")
+func EmployeeRoute(c *gin.RouterGroup, db *gorm.DB) {
+	route := c.Group("/employees")
 
 	// the route access must be authenticated
 	m := Di.DICommonMiddleware(db)
@@ -16,7 +16,7 @@ func DivisionRoute(c *gin.RouterGroup, db *gorm.DB) {
 	route.Use(m.IsAuthenticate)
 
 	// init controller
-	divisionController := Di.DIDivision(db)
+	EmployeeController := Di.DIEmployee(db)
 
 	route.GET("/checked", func(ctx *gin.Context) {
 		ctx.JSON(200, gin.H{
@@ -24,5 +24,9 @@ func DivisionRoute(c *gin.RouterGroup, db *gorm.DB) {
 		})
 	})
 
-	route.GET("/", divisionController.GetAllDivision)
+	route.GET("/", EmployeeController.GetAllEmployees)
+	route.GET("/:id", EmployeeController.GetEmployeeById)
+	route.POST("/", EmployeeController.AddNewEmployee)
+	route.PUT("/:id", EmployeeController.UpdateEmployee)
+	route.DELETE("/:id", EmployeeController.DeleteEmployee)
 }

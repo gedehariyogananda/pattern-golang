@@ -70,12 +70,24 @@ func (c *AuthController) Login(ctx *gin.Context) {
 		return
 	}
 
-	ctx.JSON(http.StatusAccepted, gin.H{
-		"success": true,
-		"message": "successfully login",
-		"data": gin.H{
-			"user":  user,
-			"token": token,
-		},
-	})
+	if user.Roles == "admin" {
+		ctx.JSON(http.StatusAccepted, gin.H{
+			"success": true,
+			"message": "successfully login",
+			"data": gin.H{
+				"admin": user,
+				"token": token,
+			},
+		})
+	} else {
+		ctx.JSON(http.StatusAccepted, gin.H{
+			"success": true,
+			"message": "successfully login",
+			"data": gin.H{
+				"user":  user,
+				"token": token,
+			},
+		})
+
+	}
 }
